@@ -1,0 +1,3 @@
+[submodule "src/Dx.Domain"]
+	path = src/Dx.Domain
+	url = https://github.com/ulfbou/dx.domain.git
