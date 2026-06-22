@@ -8,28 +8,72 @@ using static Dx.Domain.Dx;
 
 namespace Provenance.Integrity;
 
-/// <summary>Result of a content hash operation. Immutable and validated.</summary>
+/// <summary>
+/// Represents the canonical result of hashing Provenance content.
+/// </summary>
+/// <remarks>
+/// <para>
+/// The algorithm is fixed to <c>sha256</c> in v0.1.0-alpha, and the hexadecimal value is canonical lowercase
+/// hexadecimal.
+/// </para>
+/// <para>
+/// The byte count records the exact number of bytes processed to produce the hash and is always non-negative.
+/// </para>
+/// </remarks>
 [ValueObject]
 public readonly record struct HashResult
 {
     /// <summary>
-    /// The name of the hashing algorithm used, e.g. "sha256". This is not a free-form string; it must be one of the supported algorithms recognized by the system.
+    /// Gets the hashing algorithm used to produce the result.
     /// </summary>
-    /// <remarks>
-    /// In v0.1.0-alpha, only "sha256" is supported. Future versions may support additional algorithms, but any algorithm used must be explicitly recognized and validated by the system.
-    /// </remarks>
+    /// <value>
+    /// The canonical hashing algorithm name <c>sha256</c>.
+    /// </value>
     public string Algorithm { get; }
 
     /// <summary>
-    /// The hexadecimal string representation of the hash value. The format and length of this string depend on the hashing algorithm used. For example, a SHA-256 hash is typically represented as a 64-character hexadecimal string.
+    /// Gets the canonical hexadecimal hash value.
     /// </summary>
+    /// <value>
+    /// A 64-character lowercase hexadecimal string for <c>sha256</c>.
+    /// </value>
     public string HexValue { get; }
 
-    /// <summary>The number of bytes processed to produce the hash value.</summary>
+    /// <summary>
+    /// Gets the number of bytes processed to produce the hash value.
+    /// </summary>
+    /// <value>
+    /// A non-negative byte count.
+    /// </value>
     public long BytesProcessed { get; }
 
     private HashResult(string alg, string hex, long bytes) => (Algorithm, HexValue, BytesProcessed) = (alg, hex, bytes);
 
+    /// <summary>
+    /// Creates a validated content-hash result.
+    /// </summary>
+    /// <param name="algorithm">
+    /// The hashing algorithm name. The value is validated as <c>sha256</c>.
+    /// </param>
+    /// <param name="hex">
+    /// The hexadecimal hash value. The value is validated as canonical lowercase SHA-256 hexadecimal.
+    /// </param>
+    /// <param name="bytes">
+    /// The number of bytes processed to produce the hash. The value must not be negative.
+    /// </param>
+    /// <returns>
+    /// A successful result containing a canonical <see cref="HashResult"/>, or a failure result with one of:
+    /// <list type="bullet">
+    /// <item><description><c>provenance.integrity.unsupported_algorithm</c></description></item>
+    /// <item><description><c>provenance.integrity.blank_hex_value</c></description></item>
+    /// <item><description><c>provenance.integrity.invalid_hex_length</c></description></item>
+    /// <item><description><c>provenance.integrity.invalid_hex_format</c></description></item>
+    /// <item><description><c>provenance.integrity.negative_byte_count</c></description></item>
+    /// </list>
+    /// </returns>
+    /// <remarks>
+    /// The returned value is canonical and safe for persistence and diagnostics.
+    /// </remarks>
     public static Result<HashResult> Create(string algorithm, string hex, long bytes)
     {
         if (algorithm != "sha256")

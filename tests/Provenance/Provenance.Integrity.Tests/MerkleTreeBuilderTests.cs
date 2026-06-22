@@ -5,7 +5,7 @@ using Provenance.Primitives;
 namespace Provenance.Integrity.Tests;
 
 [Trait("Category", "Unit")]
-[Trait("Area", "Crypto")]
+[Trait("Area", "Integrity")]
 [Trait("Version", "v0.1.0-alpha")]
 public sealed class MerkleTreeBuilderTests
 {
