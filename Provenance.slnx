@@ -10,9 +10,11 @@
   </Folder>
   <Folder Name="/src/Provenance/">
     <Project Path="src/Provenance/Provenance.Primitives/Provenance.Primitives.csproj" />
+    <Project Path="src/Provenance/Provenance.Protocol/Provenance.Protocol.csproj" />
   </Folder>
   <Folder Name="/tests/" />
   <Folder Name="/tests/Provenance/">
     <Project Path="tests/Provenance/Provenance.Primitives.Tests/Provenance.Primitives.Tests.csproj" />
+    <Project Path="tests/Provenance/Provenance.Protocol.Tests/Provenance.Protocol.Tests.csproj" />
   </Folder>
 </Solution>
