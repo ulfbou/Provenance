@@ -1,0 +1,18 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Dx.Domain/" />
+  <Folder Name="/src/Dx.Domain/src/">
+    <Project Path="src/Dx.Domain/src/Dx.Domain.Analyzers/Dx.Domain.Analyzers.csproj" />
+    <Project Path="src/Dx.Domain/src/Dx.Domain.Annotations/Dx.Domain.Annotations.csproj" />
+    <Project Path="src/Dx.Domain/src/Dx.Domain.Facts/Dx.Domain.Facts.csproj" />
+    <Project Path="src/Dx.Domain/src/Dx.Domain.Kernel/Dx.Domain.Kernel.csproj" />
+    <Project Path="src/Dx.Domain/src/Dx.Domain.Primitives/Dx.Domain.Primitives.csproj" />
+  </Folder>
+  <Folder Name="/src/Provenance/">
+    <Project Path="src/Provenance/Provenance.Primitives/Provenance.Primitives.csproj" />
+  </Folder>
+  <Folder Name="/tests/" />
+  <Folder Name="/tests/Provenance/">
+    <Project Path="tests/Provenance/Provenance.Primitives.Tests/Provenance.Primitives.Tests.csproj" />
+  </Folder>
+</Solution>
