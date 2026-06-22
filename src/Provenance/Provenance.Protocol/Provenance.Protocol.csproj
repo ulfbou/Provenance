@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<LangVersion>14.0</LangVersion>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<Deterministic>true</Deterministic>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<NoWarn>$(NoWarn);1591</NoWarn>
+
+		<RootNamespace>Provenance.Protocol</RootNamespace>
+		<AssemblyName>Provenance.Protocol</AssemblyName>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Dx.Domain\src\Dx.Domain.Annotations\Dx.Domain.Annotations.csproj" />
+		<ProjectReference Include="..\..\Dx.Domain\src\Dx.Domain.Kernel\Dx.Domain.Kernel.csproj" />
+		<ProjectReference Include="..\..\Dx.Domain\src\Dx.Domain.Primitives\Dx.Domain.Primitives.csproj" />
+		<ProjectReference Include="..\Provenance.Primitives\Provenance.Primitives.csproj" />
+		<PackageReference Include="NodaTime" Version="3.3.2" />
+		<PackageReference Include="NodaTime.Serialization.SystemTextJson" Version="1.4.0" />
+	</ItemGroup>
+</Project>
