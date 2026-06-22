@@ -13,6 +13,27 @@ using static Dx.Domain.Dx;
 
 namespace Provenance.Integrity;
 
+/// <summary>
+/// Provides a deterministic Merkle tree implementation for Provenance content identifiers.
+/// </summary>
+/// <remarks>
+/// <para>
+/// Each leaf is hashed from the canonical <see cref="ContentId.Value"/> using a domain
+/// separation prefix of 0x00.
+/// </para>
+/// <para>
+/// Each internal node is hashed using a domain separation prefix of 0x01, followed by
+/// the left child hash and the right child hash.
+/// </para>
+/// <para>
+/// When a tree level has an odd number of hashes, the final hash is duplicated before computing
+/// the parent level.
+/// </para>
+/// <para>
+/// The final root is returned as a canonical <c>sha256:&lt;64 lowercase
+/// hex&gt;</c> <see cref="MerkleRoot"/>.
+/// </para>
+/// </remarks>
 public static class MerkleTreeBuilder
 {
     /// <summary>
@@ -36,7 +57,7 @@ public static class MerkleTreeBuilder
 
         // 1. Deterministic ordering — only sort if caller didn't
         var orderedStrings = preSorted
-          ? entries.Select(e => e.ToString())
+            ? entries.Select(e => e.ToString())
             : entries.Select(e => e.ToString()).OrderBy(s => s, StringComparer.Ordinal);
 
         // 2. Leaf hashes with domain separation 0x00

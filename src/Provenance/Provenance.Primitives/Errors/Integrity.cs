@@ -7,7 +7,7 @@ namespace Provenance.Primitives.Errors;
 public static partial class ProvenanceErrors
 {
     /// <summary>
-    /// Provides stable domain errors for integritygraphic identifiers, content hashing, verification, and Merkle root calculation.
+    /// Provides stable domain errors for Cryptographic identifiers, content hashing, verification, and Merkle root calculation.
     /// </summary>
     /// <remarks>
     /// <para>
@@ -26,7 +26,7 @@ public static partial class ProvenanceErrors
     public static partial class Integrity
     {
         /// <summary>
-        /// Defines stable error codes for integritygraphy-related errors.
+        /// Defines stable error codes for Cryptography-related errors.
         /// </summary>
         public static class Codes
         {
@@ -45,7 +45,7 @@ public static partial class ProvenanceErrors
             /// <summary> Error code for hexadecimal values with invalid format or unsupported characters.</summary>
             public const string InvalidHexFormat = "provenance.integrity.invalid_hex_format";
 
-            /// <summary> Error code for detected integritygraphic corruption during verification.</summary>
+            /// <summary> Error code for detected Cryptographic corruption during verification.</summary>
             public const string CorruptionDetected = "provenance.integrity.corruption_detected";
 
             /// <summary> Error code for incomplete verification when the verification boundary is reached.</summary>
@@ -66,28 +66,19 @@ public static partial class ProvenanceErrors
             /// <summary> Error code for invalid leaf entries in Merkle root calculation.</summary>
             public const string MerkleInvalidLeaf = "provenance.integrity.merkle_invalid_leaf";
 
-            /// <summary> Error code for null source streams in integritygraphic operations.</summary>
+            /// <summary> Error code for null source streams in Cryptographic operations.</summary>
             public const string NullStream = "provenance.integrity.null_stream";
 
-            /// <summary> Error code for source streams that cannot be read during integritygraphic operations.</summary>
+            /// <summary> Error code for source streams that cannot be read during Cryptographic operations.</summary>
             public const string StreamNotReadable = "provenance.integrity.stream_not_readable";
 
-            /// <summary> Error code for source streams that cannot be written during integritygraphic operations.</summary>
+            /// <summary> Error code for source streams that cannot be written during Cryptographic operations.</summary>
             public const string StreamNotWritable = "provenance.integrity.stream_not_writable";
 
             /// <summary> Error code for operations that are cancelled.</summary>
             public const string OperationCancelled = "provenance.integrity.operation_cancelled";
 
-            /// <summary> Error code for null source streams in hash operations.</summary>
-            public const string HashNullStream = "provenance.integrity.hash_null_stream";
-
-            /// <summary> Error code for unreadable source streams in hash operations.</summary>
-            public const string HashUnreadableStream = "provenance.integrity.hash_unreadable_stream";
-
-            /// <summary> Error code for cancelled hash operations.</summary>
-            public const string HashCancelled = "provenance.integrity.hash_cancelled";
-
-            /// <summary> Error code for unreadable streams during integritygraphic read operations.</summary>
+            /// <summary> Error code for unreadable streams during Cryptographic read operations.</summary>
             public const string ReadFailed = "provenance.integrity.read_failed";
 
             /// <summary> Error code for failures during Merkle root cannonicalization.</summary>
@@ -97,20 +88,20 @@ public static partial class ProvenanceErrors
             public const string HashReadFailed = "provenance.integrity.hash_read_failed";
 
             /// <summary> Error code for failures during content hash computation.</summary>
-            public const string HashComputationFailed = "provenance.integrity.hash_computation_failed";
+            public const string ComputationFailed = "provenance.integrity.hash_computation_failed";
 
             /// <summary> Error code for failures during content identifier canonicalization.</summary>
-            public const string HashCanonicalizationFailed = "provenance.integrity.hash_canonicalization_failed";
+            public const string CanonicalizationFailed = "provenance.integrity.hash_canonicalization_failed";
 
             /// <summary> Error code for failures during Merkle root computation.</summary>
             public const string MerkleComputationFailed = "provenance.integrity.merkle_computation_failed";
 
-            /// <summary> Error code for blank content values in integritygraphic operations.</summary>
+            /// <summary> Error code for blank content values in Cryptographic operations.</summary>
             public static string BlankContent = "provenance.integrity.blank_content";
         }
 
         /// <summary>
-        /// Gets the error used when a integritygraphic algorithm value is null, empty, or whitespace.
+        /// Gets the error used when a Cryptographic algorithm value is null, empty, or whitespace.
         /// </summary>
         /// <value>
         /// <c>provenance.integrity.blank_algorithm</c>.
@@ -119,7 +110,7 @@ public static partial class ProvenanceErrors
             Create(Codes.BlankAlgorithm, "Algorithm cannot be blank.");
 
         /// <summary>
-        /// Gets the error used when a integritygraphic algorithm is not supported.
+        /// Gets the error used when a Cryptographic algorithm is not supported.
         /// </summary>
         /// <value>
         /// <c>provenance.integrity.unsupported_algorithm</c>.
@@ -155,13 +146,13 @@ public static partial class ProvenanceErrors
             Create(Codes.InvalidHexFormat, "Invalid hex format.");
 
         /// <summary>
-        /// Gets the error used when integritygraphic verification detects corrupted content.
+        /// Gets the error used when Cryptographic verification detects corrupted content.
         /// </summary>
         /// <value>
         /// <c>provenance.integrity.corruption_detected</c>.
         /// </value>
         public static readonly DomainError CorruptionDetected =
-            Create(Codes.CorruptionDetected, "integritygraphic corruption detected.");
+            Create(Codes.CorruptionDetected, "Cryptographic corruption detected.");
 
         /// <summary>
         /// Gets the error used when verification was not completed before the verification boundary ended.
@@ -260,33 +251,6 @@ public static partial class ProvenanceErrors
             Create(Codes.OperationCancelled, "Operation was cancelled.");
 
         /// <summary>
-        /// Gets the error used when content hashing receives a <see langword="null"/> source stream.
-        /// </summary>
-        /// <value>
-        /// <c>provenance.integrity.hash_null_stream</c>.
-        /// </value>
-        public static readonly DomainError HashNullStream =
-            Create(Codes.HashNullStream, "Source stream is null.");
-
-        /// <summary>
-        /// Gets the error used when content hashing receives a stream that cannot be read.
-        /// </summary>
-        /// <value>
-        /// <c>provenance.integrity.hash_unreadable_stream</c>.
-        /// </value>
-        public static readonly DomainError HashUnreadableStream =
-            Create(Codes.HashUnreadableStream, "Source stream is not readable.");
-
-        /// <summary>
-        /// Gets the error used when content hashing is cancelled.
-        /// </summary>
-        /// <value>
-        /// <c>provenance.integrity.hash_cancelled</c>.
-        /// </value>
-        public static readonly DomainError HashCancelled =
-            Create(Codes.HashCancelled, "Operation was cancelled.");
-
-        /// <summary>
         /// Gets the error used when content is 
         /// </summary>
         public static DomainError BlankContent =
@@ -339,7 +303,7 @@ public static partial class ProvenanceErrors
         /// </returns>
         public static DomainError HashComputationFailed(string detail) =>
             Create(
-                Codes.HashComputationFailed, 
+                Codes.ComputationFailed, 
                 "The content hash could not be computed.", 
                 KeyValuePair.Create<string, object>("ValidationDetails", detail ?? string.Empty));
 
@@ -354,7 +318,7 @@ public static partial class ProvenanceErrors
         /// </returns>
         public static DomainError HashCanonicalizationFailed(string details) =>
             Create(
-                Codes.HashCanonicalizationFailed, 
+                Codes.CanonicalizationFailed, 
                 "The computed content identifier could not be represented canonically.", 
                 KeyValuePair.Create<string, object>("ValidationDetails", details ?? string.Empty));
 
